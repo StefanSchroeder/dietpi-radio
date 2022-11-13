@@ -145,4 +145,4 @@ volume. Press the knob to switch to the next channel.
 
 - Hifiberry-support
 - Preinstall application
-- 
+- Autoupdate
