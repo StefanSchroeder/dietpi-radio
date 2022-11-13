@@ -98,7 +98,7 @@ Configure Audio (for Raspberry's with audio jack):
 
 Sound card = rpi-bcm2835-3.5mm
 
-Gateway
+## Gateway (Audio)
 
 At this point you should be able to play audio.
 
@@ -107,7 +107,16 @@ Test with
 	mplayer https://reckhorn.com/media/music/Test-1.wav
 
 This will play some drums. If it doesn't, don't continue.
+
+## Debugging Audio
+
+To debug, the following tools are helpful:
+
+amixer will provide information about the soundcard.
+
+alsamixer will allow you to control the volume. Set to 100% initially.
 	
+## Installing the radion application
 
 Clone the radio repo
 
@@ -115,7 +124,13 @@ Clone the radio repo
 
 	cd rpi-radio
 
+	crontab -e
+
+Add '@reboot bash /root/radio.sh' to crontab.
+
 There are two versions of the player.
+
+
 
 1. The version 'radio.py' can be controlled via keyboard 
    
