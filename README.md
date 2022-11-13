@@ -112,36 +112,37 @@ This will play some drums. If it doesn't, don't continue.
 
 To debug, the following tools are helpful:
 
-amixer will provide information about the soundcard.
+*amixer* will provide information about the soundcard.
 
-alsamixer will allow you to control the volume. Set to 100% initially.
+*alsamixer* will allow you to control the volume. Set to 100% initially.
 	
 ## Installing the radion application
 
 Clone the radio repo
 
-	git clone https://github.com/StefanSchroeder/rpi-radio.git
+	git clone https://github.com/StefanSchroeder/dietpi-radio.git
 
-	cd rpi-radio
+	cd dietpi-radio
 
-	crontab -e
+	echo '@reboot bash /root/radio.sh' | crontab -
 
-Add '@reboot bash /root/radio.sh' to crontab.
+## Usage
 
-There are two versions of the player.
-
-
-
-1. The version 'radio.py' can be controlled via keyboard 
+If you happen to start *radio.py* from the commandline, the program
+can be controlled via keyboard:
    
 x,y for volume.
 
-m,y,0,1 for channel selection
+m,y for channel selection
 
 z quit
 
-	python radio.py
+But usually (after being started via crontab) controlling via keyboard
+is not possible nor desired. Use the rotary encoder to control the
+volume. Press the knob to switch to the next channel.
 
-or the version that is controlled with hardware:
+# OPEN POINTS
 
-	python rpi-radio.py
+- Hifiberry-support
+- Preinstall application
+- 
