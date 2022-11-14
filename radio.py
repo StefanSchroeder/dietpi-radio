@@ -1,6 +1,4 @@
 
-from RPi import GPIO
-from curses import wrapper
 import asyncio
 import csv
 import curses
@@ -10,6 +8,9 @@ import signal
 import subprocess
 import sys
 import time, shlex
+
+from RPi import GPIO
+from curses import wrapper
 
 current_channel = 0
 
@@ -27,7 +28,8 @@ json_string = """
 } 
 """
 
-data = json.loads(json_string)
+#data = json.loads(json_string)
+data = json.load("radio.json")
 
 CLK = 5
 DT = 7
@@ -67,39 +69,6 @@ def SetRadioChannelIndex(c):
 def SetRadioChannelUp():
     data["current"] = ( data["current"] + 1 ) % len(data["radio"])
     SetRadioChannel()
-    
-def SetRadioChannelDown():
-    data["current"] = ( data["current"] - 1 + len(data["radio"])) % len(data["radio"])
-    SetRadioChannel()
-
-def cleanup():
-    os.system("pkill mplayer");
-    curses.nocbreak()
-    # screen.keypad(0)
-    curses.echo()
-    curses.endwin()
-    GPIO.cleanup()
-    sys.exit()
-
-def main():
-    SetRadioChannelIndex(data["current"])
-
-    damn = curses.initscr()
-    damn.nodelay(1)
-    while True:
-        c = damn.getch()
-        if c > 1:
-            print("<" + str(c) + ">")
-        if c == 122: # 'z'
-            cleanup()
-        if c == 109: # 'm'
-            SetRadioChannelUp()
-        if c == 110: # 'n'
-            SetRadioChannelDown()
-        if c == 120: # 'x'
-            applyVolume(data["volume"] + 4)
-        if c == 121: # 'y'
-            applyVolume(data["volume"] - 4)
 
 def no_curses_main():
     SetRadioChannelIndex(data["current"])
@@ -119,7 +88,6 @@ GPIO.add_event_detect(CLK, GPIO.FALLING, callback=CLKClicked, bouncetime=300)
 GPIO.add_event_detect(DT, GPIO.FALLING, callback=DTClicked, bouncetime=300)
 GPIO.add_event_detect(SW, GPIO.FALLING, callback=RotButton, bouncetime=250)
 
-# Clamp value btw 0 and 100
 clamp = lambda n: max(min(100, n), 0)
 
 no_curses_main()

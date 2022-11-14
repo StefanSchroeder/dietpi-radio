@@ -1,3 +1,5 @@
+# This file shall be placed in 
+# /etc/systemd/system
 [Unit]
 Description=Raspberry Pi radio
 

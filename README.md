@@ -133,7 +133,9 @@ Clone the radio repo
 
 	cd dietpi-radio
 
-	echo '@reboot bash [root dietpi radio radio sh](/root/dietpi-radio/radio.sh)' | crontab -
+	cp radio.service /etc/systemd/system
+
+	systemctl enable radio.service
 
 ## Usage
 
@@ -155,3 +157,4 @@ volume. Press the knob to switch to the next channel.
 - Hifiberry-support
 - Preinstall application
 - Autoupdate
+
