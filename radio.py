@@ -45,7 +45,7 @@ def SetRadioChannelUp(dummy):
     data["current"] = ( data["current"] + 1 ) % len(data["radio"])
     SetRadioChannel()
 
-def no_curses_main():
+def main():
     SetRadioChannel()
     loop = asyncio.get_event_loop()
     try:
@@ -65,5 +65,5 @@ GPIO.add_event_detect(SW, GPIO.FALLING, callback=SetRadioChannelUp, bouncetime=2
 
 clamp = lambda n: max(min(100, n), 0)
 
-no_curses_main()
+main()
 

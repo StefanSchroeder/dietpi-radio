@@ -1,7 +1,7 @@
 # Raspberry-Pi radio
 
 This project builds a radio with a raspberry-pi type SBC and
-a couple of controls, namely a volume control and channel control.
+a rotary encoder to  control the volume and channel.
 
 # Dietpi 
 
@@ -58,7 +58,7 @@ Eject SD-card
 
 	umount /mnt
 
-Gateway: Now you have a pre-configured SD-card. 
+## SD-card is ready to launch
 
 Plug into device. Power up.
 
