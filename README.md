@@ -80,7 +80,7 @@ Log into the machine using the default credentials.
 
 After the first login, there are some updates that 
 will likely lead to a reboot because of an updated kernel.
-Your session will interrupted and you have to re-login
+Your ssh-session will interrupted and you have to re-login
 after the system has restarted:
 
 	ssh root@radio # with default password 'dietpi'
@@ -127,30 +127,28 @@ To debug, the following tools are helpful:
 	
 ## Installing the radion application
 
-Clone the radio repo
+Clone the radio repo (we are in /root)
 
 	git clone https://github.com/StefanSchroeder/dietpi-radio.git
 
-	cd dietpi-radio
-
-	cp radio.service /etc/systemd/system
+	cp dietpi-radio/radio.service /etc/systemd/system
 
 	systemctl enable radio.service
+	systemctl start radio.service
 
 ## Usage
 
-If you happen to start *radio.py* from the commandline, the program
-can be controlled via keyboard:
-   
-x,y for volume.
+After the next reboot the radio application will automatically start.
 
-m,y for channel selection
+Use the rotary encoder to control the volume. Press the knob to switch
+to the next channel.
 
-z quit
+The URLs of radio channels are listed in the JSON file.
+The *current* variable indicates the initial channel.
+The *volume* variable indicates the initial volume.
+The *amixer* variable indicates the name of the audio device as
+indicated by the *amixer* command.
 
-But usually (after being started via crontab) controlling via keyboard
-is not possible nor desired. Use the rotary encoder to control the
-volume. Press the knob to switch to the next channel.
 
 # OPEN POINTS
 

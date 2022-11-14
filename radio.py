@@ -1,16 +1,11 @@
 
 import asyncio
-import csv
-import curses
 import json
 import os
-import signal
 import subprocess
-import sys
-import time, shlex
+import shlex
 
 from RPi import GPIO
-from curses import wrapper
 from pathlib import Path
 
 jsondir = Path(__file__).parent
