@@ -1,18 +1,15 @@
-# Better Raspberry Pi Radio
-# (C) 2017 M4rc3lv
-# Additions and updates by Stefan Schroeder, 2019
-# import RPi.GPIO as GPIO
-import os
+
 from RPi import GPIO
+from curses import wrapper
+import asyncio
 import csv
+import curses
+import json
+import os
+import signal
+import subprocess
 import sys
 import time, shlex
-import subprocess
-import curses
-from curses import wrapper
-import json
-import signal
-
 
 current_channel = 0
 
@@ -29,19 +26,12 @@ json_string = """
     "volume": 60
 } 
 """
+
 data = json.loads(json_string)
-
-
 
 CLK = 5
 DT = 7
 SW = 32
-
-GPIO.setmode(GPIO.BOARD)
-
-GPIO.setup(CLK, GPIO.IN)
-GPIO.setup(DT, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(SW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def RotButton(dummy):
     SetRadioChannelUp()
@@ -57,26 +47,6 @@ def DTClicked(channel):
     DTState = GPIO.input(DT)
     if CLKState == 1 and DTState == 0:
         applyVolume(data["volume"] + 4)
-
-GPIO.add_event_detect(CLK, GPIO.FALLING, callback=CLKClicked, bouncetime=300)
-GPIO.add_event_detect(DT, GPIO.FALLING, callback=DTClicked, bouncetime=300)
-GPIO.add_event_detect(SW, GPIO.FALLING, callback=RotButton, bouncetime=250)
-
-def signal_handler1(sig, frame):
-    SetRadioChannelUp()
-
-def signal_handler2(sig, frame):
-    SetRadioChannelDown()
-
-signal.signal(signal.SIGUSR1, signal_handler1)
-signal.signal(signal.SIGUSR2, signal_handler2)
-
-# Clamp value btw 0 and 100
-clamp = lambda n: max(min(100, n), 0)
-
-def shutdownRadio(dummy):
-    print("Shutdown")
-#    os.system("sudo halt")
 
 def applyVolume(volume):
     data["volume"] = clamp(volume)
@@ -131,5 +101,26 @@ def main():
         if c == 121: # 'y'
             applyVolume(data["volume"] - 4)
 
-wrapper(main())
+def no_curses_main():
+    SetRadioChannelIndex(data["current"])
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_forever()
+    except:
+        loop.close()
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(CLK, GPIO.IN)
+GPIO.setup(DT, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(SW, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+GPIO.add_event_detect(CLK, GPIO.FALLING, callback=CLKClicked, bouncetime=300)
+GPIO.add_event_detect(DT, GPIO.FALLING, callback=DTClicked, bouncetime=300)
+GPIO.add_event_detect(SW, GPIO.FALLING, callback=RotButton, bouncetime=250)
+
+# Clamp value btw 0 and 100
+clamp = lambda n: max(min(100, n), 0)
+
+no_curses_main()
 
