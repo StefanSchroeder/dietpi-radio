@@ -46,7 +46,7 @@ def SetRadioChannel():
     my_env["MPLAYER_VERBOSE"] = "-1"
     subprocess.Popen(args, env=my_env)
 
-def SetRadioChannelUp():
+def SetRadioChannelUp(dummy):
     data["current"] = ( data["current"] + 1 ) % len(data["radio"])
     SetRadioChannel()
 
