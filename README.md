@@ -124,7 +124,7 @@ Clone the radio repo
 
 	cd dietpi-radio
 
-	echo '@reboot bash /root/radio.sh' | crontab -
+	echo '@reboot bash [root dietpi radio radio sh](/root/dietpi-radio/radio.sh)' | crontab -
 
 ## Usage
 
