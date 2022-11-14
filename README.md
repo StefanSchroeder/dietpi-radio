@@ -78,6 +78,13 @@ Log into the machine using the default credentials.
 
 	ssh root@radio # with default password 'dietpi'
 
+After the first login, there are some updates that 
+will likely lead to a reboot because of an updated kernel.
+Your session will interrupted and you have to re-login
+after the system has restarted:
+
+	ssh root@radio # with default password 'dietpi'
+
 Change the default password
 
 	passwd
@@ -88,7 +95,7 @@ Update the package database
 
 Install a few commands that we use
 
-	apt install -y mplayer git python3 alsa-utils
+	apt install -y mplayer git python3 alsa-utils python3-rpi.gpio
 
 Configure Audio (for Raspberry's with audio jack):
 
@@ -96,7 +103,9 @@ Configure Audio (for Raspberry's with audio jack):
 
 	Enable Audio -> Select Onboard 3.5 mm bcm2835
 
-Sound card = rpi-bcm2835-3.5mm
+After configuring the audio. The device will be rebooted once more.
+
+Note: Sound card = rpi-bcm2835-3.5mm
 
 ## Gateway (Audio)
 

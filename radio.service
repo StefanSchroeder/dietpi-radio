@@ -1,0 +1,8 @@
+[Unit]
+Description=Raspberry Pi radio
+
+[Service]
+ExecStart=/usr/bin/python3 /root/dietpi-radio/radio.py
+
+[Install]
+WantedBy=multi-user.target
