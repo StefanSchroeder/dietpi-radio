@@ -1,9 +1,13 @@
-# Raspberry-Pi radio
+# Raspberry-Pi Radio
 
 This project builds a radio with a raspberry-pi type SBC and
 a rotary encoder to  control the volume and channel.
 
-# Dietpi 
+## Prior art
+- https://blog.sharedove.com/adisjugo/index.php/2020/05/10/using-ky-040-rotary-encoder-on-raspberry-pi-to-control-volume/
+- https://www.instructables.com/Raspberry-Pi-Radio/
+
+# Install Dietpi 
 
 Download:
 
@@ -58,7 +62,7 @@ Eject SD-card
 
 	umount /mnt
 
-## SD-card is ready to launch
+## SD-card is ready to launch!
 
 Plug into device. Power up.
 
@@ -102,6 +106,10 @@ Configure Audio (for Raspberry's with audio jack):
 	dietpi-config
 
 	Enable Audio -> Select Onboard 3.5 mm bcm2835
+
+Cmdline:
+
+	/boot/dietpi/func/dietpi-set_hardware rpi-bcm2835-3.5mm
 
 After configuring the audio. The device will be rebooted once more.
 
@@ -155,4 +163,5 @@ indicated by the *amixer* command.
 - Hifiberry-support
 - Preinstall application
 - Autoupdate
+- Zero support 
 
