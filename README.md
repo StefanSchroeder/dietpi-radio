@@ -18,9 +18,11 @@ Extract
 
 	7z x DietPi_RPi-ARMv6-Bullseye.7z
 
-Check the drivename of your SDcard
+Insert SD-card and find the drivename of your SD-card
 
 	lsblk
+or
+	dmesg
 
 Install on SDcard. 
 
@@ -56,8 +58,11 @@ Disable HDMI output
 
 Set Wifi-Credentials
 
-	sed -i 's/aWIFI_SSID[0]=''/aWIFI_SSID[0]='MyWifiName' /mnt/dietpi-wifi.txt
-	sed -i 's/aWIFI_KEY[0]=''/aWIFI_KEY[0]='12345678901234567890123456789' /mnt/dietpi-wifi.txt
+	sed -i 's/aWIFI_SSID\[0\]=\x27\x27/aWIFI_SSID[0]=\x27MyWifiName\x27/' /mnt/dietpi-wifi.txt
+	sed -i 's/aWIFI_KEY\[0\]=\x27\x27/aWIFI_KEY[0]=\x27MySuperSecretWifiPassword\x27/' /mnt/dietpi-wifi.txt
+	
+Note: The square brackets must be quoted. The single quotes must be
+written as \x27 to not interfere with the quoting.
 
 Eject SD-card
 
