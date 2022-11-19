@@ -4,6 +4,7 @@ This project builds a radio with a raspberry-pi type SBC and
 a rotary encoder to  control the volume and channel.
 
 ## Prior art
+
 - https://blog.sharedove.com/adisjugo/index.php/2020/05/10/using-ky-040-rotary-encoder-on-raspberry-pi-to-control-volume/
 - https://www.instructables.com/Raspberry-Pi-Radio/
 
@@ -25,7 +26,7 @@ Install on SDcard.
 
 	dd if=DietPi_RPi-ARMv6-Bullseye.img of=/dev/mmcblk0 bs=4M status=progress
 
-Mount the first partition on the SD-card
+Mount the first partition of the SD-card
 
 	mount /dev/mmcblk0p1 /mnt
 
@@ -84,7 +85,7 @@ Log into the machine using the default credentials.
 
 After the first login, there are some updates that 
 will likely lead to a reboot because of an updated kernel.
-Your ssh-session will interrupted and you have to re-login
+Your ssh-session will be interrupted and you have to re-login
 after the system has restarted:
 
 	ssh root@radio # with default password 'dietpi'
@@ -127,7 +128,7 @@ This will play some drums. If it doesn't, don't continue.
 
 ## Debugging Audio
 
-To debug, the following tools are helpful:
+To debug audio, the following tools are helpful:
 
 *amixer* will provide information about the soundcard.
 
@@ -151,11 +152,11 @@ After the next reboot the radio application will automatically start.
 Use the rotary encoder to control the volume. Press the knob to switch
 to the next channel.
 
-The URLs of radio channels are listed in the JSON file.
-The *current* variable indicates the initial channel.
-The *volume* variable indicates the initial volume.
-The *amixer* variable indicates the name of the audio device as
-indicated by the *amixer* command.
+The URLs of radio channels are listed in the JSON file.  The *current*
+variable indicates the initial channel (starting with 0).  The
+*volume* variable indicates the initial volume.  The *amixer* variable
+indicates the name of the audio device as indicated by the *amixer*
+command.
 
 
 # OPEN POINTS
@@ -163,5 +164,5 @@ indicated by the *amixer* command.
 - Hifiberry-support
 - Preinstall application
 - Autoupdate
-- Zero support 
+- PiZero support 
 
