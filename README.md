@@ -104,10 +104,6 @@ Update the package database
 
 	apt update
 
-The required package *alsa-utils* will have been installed already
-when configuring the audio. *python3* will be installed as a
-dependency of *python3-rpi.gpio*. 
-
 Configure Audio (for Raspberry's with audio jack):
 
 	dietpi-config
@@ -124,8 +120,12 @@ Note: Sound card = rpi-bcm2835-3.5mm
 
 Install a few commands that we use
 
-	apt install -y mplayer git python3 alsa-utils python3-rpi.gpio
-	
+	apt install -y mplayer git alsa-utils python3-rpi.gpio
+
+The required package *alsa-utils* will have been installed already
+when configuring the audio. *python3* will be installed as a
+dependency of *python3-rpi.gpio*. 
+
 ## Gateway (Audio)
 
 At this point you should be able to play audio.
@@ -143,7 +143,7 @@ To debug audio, the following tools are helpful:
 *amixer* will provide information about the soundcard.
 
 *alsamixer* will allow you to control the volume. Set to 100% initially.
-	
+
 ## Installing the radion application
 
 Clone the radio repo (we are in /root)
@@ -167,7 +167,6 @@ variable indicates the initial channel (starting with 0).  The
 *volume* variable indicates the initial volume.  The *amixer* variable
 indicates the name of the audio device as indicated by the *amixer*
 command.
-
 
 # OPEN POINTS
 
