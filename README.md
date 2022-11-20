@@ -120,7 +120,7 @@ Note: Sound card = rpi-bcm2835-3.5mm
 
 Install a few commands that we use
 
-	apt install -y mplayer git alsa-utils python3-rpi.gpio
+	apt install -y mplayer git python3-rpi.gpio
 
 The required package *alsa-utils* will have been installed already
 when configuring the audio. *python3* will be installed as a
